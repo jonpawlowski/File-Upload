@@ -31,21 +31,16 @@
                     for ( ; i < len; i++ ) {
                         file = this.files[i];
                         //console.log(file);
-                        if(!!file.name.match(/.*\.pdf$/)){
-                                if ( window.FileReader ) {
-                                    reader = new FileReader();
-                                    reader.onloadend = function (e) {
-                                        TransferCompleteCallback(e.target.result);
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
-                                if (formdata) {
-                                    formdata.append("files[]", file);
-                                }
-                        } else {
-                            $("#loading_spinner").hide();
-                            $('#input_files').val('').prop('disabled',false);
-                            alert(file.name+' is not a PDF');
+                          if ( window.FileReader ) {
+                              reader = new FileReader();
+                              reader.onloadend = function (e) {
+                                  TransferCompleteCallback(e.target.result);
+                              };
+                              reader.readAsDataURL(file);
+                          }
+                          if (formdata) {
+                              formdata.append("files[]", file);
+                          }
                         }
                     }
                     if (formdata) {
